@@ -64,3 +64,12 @@ combineTestAndTrainDataSet <- function() {
   combine_test_train_filtered
 }
 
+## function summarizes data by activity and subject id.
+summarizeDataBySubjectAndActivity <- function() {
+    data <- combineTestAndTrainDataSet()
+    ## melt the data set by subject_id and activity_type
+    melted <- melt(t, id.vars = c("subject_id", "activity_type"))
+    ## calculate the mean.
+    tidy <- ddply(melted, c("subject_id", "activity_type"), summarise, mean = mean(value))
+    tidy
+}
