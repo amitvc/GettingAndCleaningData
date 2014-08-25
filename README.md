@@ -17,3 +17,4 @@ the tidy dataset file called 'tidydataset1.txt'.
 Part 2:
 This is the question in bullet point 5.It uses work done in part 1 of the assignment and calculates the average of each measurement by activity and subject id.
 Call function summarizeDataBySubjectAndActivity to get the tidy data set as dataframe.
+Note - This function uses plyr and reshape2 packages.

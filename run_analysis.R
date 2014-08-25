@@ -6,6 +6,8 @@
 ## Function goes through the 'features.txt' file and finds
 ## indexes for the all measurements which mean or standard deviation.
 ## This function can be modified to access an vector of filter strings to make it more generic
+library(plyr)
+library(reshape2)
 filterMeasurementIndexes <- function() {
   features <- read.table("UCI HAR Dataset//features.txt")
   meanIdx <- grepl("mean", features$V2)
@@ -68,7 +70,7 @@ combineTestAndTrainDataSet <- function() {
 summarizeDataBySubjectAndActivity <- function() {
     data <- combineTestAndTrainDataSet()
     ## melt the data set by subject_id and activity_type
-    melted <- melt(t, id.vars = c("subject_id", "activity_type"))
+    melted <- melt(data, id.vars = c("subject_id", "activity_type"))
     ## calculate the mean.
     tidy <- ddply(melted, c("subject_id", "activity_type"), summarise, mean = mean(value))
     tidy
